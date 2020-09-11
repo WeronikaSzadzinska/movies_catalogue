@@ -3,19 +3,15 @@ import tmdb_client, random, requests
 
 app=Flask(__name__)
 
-"""@app.route('/')
-def homepage():
-    return render_template("index.html")"""
-
-
 
 @app.route('/')
 def homepage():
     movie_list = ['popular', 'top_rated', 'upcoming', 'now_playing' ]
     selected_list = request.args.get('list_type', "popular")
-    movies = tmdb_client.get_movies(how_many=8, list_type=selected_list)
-    if selected_list != 'popular' and  selected_list != 'top_rated' and  selected_list != 'now_playing' and  selected_list != 'upcoming' :
+    if selected_list != 'popular' or  selected_list != 'top_rated' or  selected_list != 'now_playing' or  selected_list != 'upcoming' :
        selected_list == 'popular' 
+    movies = tmdb_client.get_movies(how_many=8, list_type=selected_list)
+    
     return render_template("homepage.html", movies=movies, current_list=selected_list, movie_list=movie_list)
 
 @app.context_processor
