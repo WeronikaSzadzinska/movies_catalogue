@@ -11,8 +11,8 @@
     {% for list in movie_list %}
         
         <a href="{{ url_for('homepage', list_type= list) }}" class="btn btn-outline-info">{{ list|replace("_", " ")}}</a>
-        {% if selected_list == list %}
-            <a href="{{ url_for('homepage', list_type=list) }}" class="btn btn-info" role="button" aria-pressed="true"> {{ list }} </a>
+        {% if current_list == list %}
+            <a href="{{ url_for('homepage', list_type=list) }}" class="btn btn-info active" role="button" aria-pressed="true"> {{ list }} </a>
         {% endif %}  
 
     {% endfor %}
