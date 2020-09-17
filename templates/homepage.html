@@ -9,10 +9,10 @@
     </div>
     <div class="col-lg-12 mb-4">
     {% for list in movie_list %}
-        
-        <a href="{{ url_for('homepage', list_type= list) }}" class="btn btn-outline-info">{{ list|replace("_", " ")}}</a>
         {% if current_list == list %}
-            <a href="{{ url_for('homepage', list_type=list) }}" class="btn btn-info active" role="button" aria-pressed="true"> {{ list }} </a>
+            <a href="{{ url_for('homepage', list_type=list) }}" class="btn btn-info active" role="button" aria-pressed="true"> {{ list|replace("_", " ") }} </a>
+        {% else %}    
+            <a href="{{ url_for('homepage', list_type=list) }}" class="btn btn-outline-info">{{ list|replace("_", " ")}}</a>
         {% endif %}  
 
     {% endfor %}
