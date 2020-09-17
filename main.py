@@ -8,8 +8,8 @@ app=Flask(__name__)
 def homepage():
     movie_list = ['popular', 'top_rated', 'upcoming', 'now_playing' ]
     selected_list = request.args.get('list_type', "popular")
-    if selected_list != 'popular' or  selected_list != 'top_rated' or  selected_list != 'now_playing' or  selected_list != 'upcoming' :
-       selected_list == 'popular' 
+    if selected_list not in movie_list: 
+        selected_list = 'popular' 
     movies = tmdb_client.get_movies(how_many=8, list_type=selected_list)
     
     return render_template("homepage.html", movies=movies, current_list=selected_list, movie_list=movie_list)
@@ -29,9 +29,9 @@ def movie_details(movie_id):
     selected_backdrop = random.choice(movie_images['backdrops'])
     return render_template("movie_details.html", movie=details, cast=cast, selected_backdrop=selected_backdrop)
 
-@app.errorhandler(404)
-def not_found(error):
-    return render_template("homepage.html")
+#@app.errorhandler(404)
+#def not_found(error):
+#    return render_template("homepage.html")
 
 
 
